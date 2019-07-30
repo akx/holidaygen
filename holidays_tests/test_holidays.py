@@ -11,9 +11,11 @@ def fi_holiday():
     return Holiday.for_country("FI")
 
 
-def test_holidays_smoke(fi_holiday):
+def test_get_holidays(fi_holiday):
     # TODO: Improve this test
-    assert list(fi_holiday.get_holidays(2019))
+    for bd in fi_holiday.get_holidays(2019):
+        date, day = bd  # test that BoundDays are iterable
+        assert date.year == 2019  # depending on definitions this could actually not hold true
 
 
 def test_render_csv(fi_holiday):
